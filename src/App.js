@@ -1,23 +1,59 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Components/Header';
+import Posts from './Components/Posts';
+import { useState, useEffect } from 'react'
+import { db,auth } from './Firebase'
+
+
 
 function App() {
+  const [posts, setPosts] = useState(null)
+  const [user,setUser]=useState(null)
+
+  useEffect(() => {
+    db.collection("Posts").orderBy('timestamp','desc').onSnapshot((snapshot) => {
+      setPosts(snapshot.docs.map((doc) => {
+        return (
+          {
+            id: doc.id,
+            timestamp: doc.data().timestamp,
+            postUrl: doc.data().postUrl,
+            username: doc.data().username,
+            profileUrl: doc.data().profileUrl,
+            caption:doc.data().caption,
+            imagename:doc.data().imagename
+          }
+        )
+
+      }))
+
+    })
+  }, [])
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user)
+            }
+            else {
+                setUser(null)
+            }
+        })
+    })
+}, [user])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <div className="posts__container">
+        {
+          posts?.map(post => (
+
+            <Posts info={post} user={user}/>
+          ))
+        }
+      </div>
     </div>
   );
 }

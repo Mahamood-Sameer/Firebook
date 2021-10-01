@@ -1,0 +1,77 @@
+.posts{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    margin-bottom: 20px;
+}
+
+.posts__header{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid lightgrey;
+    background-color:whitesmoke;
+    justify-content: space-between;
+}
+.posts__header__visible{
+    display: flex;
+    align-items: center;
+}
+.post__delete{
+    align-self: flex-end;
+    cursor: pointer;
+}
+.post__info{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post__info p{
+    font-size: 12px;
+    color: grey;
+}
+.posts__image{
+    width: 40vw;
+    object-fit: contain;
+}
+.posts__footer{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+}
+.posts__footer > form {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid grey;
+}
+.posts__footer > form > input{
+    flex: 0.9;
+    padding: 10px;
+    border: none;
+}
+.posts__footer > form button{
+   flex: 0.1;
+   cursor: pointer;
+   background: none;
+   border: none;
+   color: orangered;
+}
+
+.post__comment{
+    display: flex;
+    align-items: center;
+    font-size: 12px !important;
+    margin-bottom: 15px !important;
+}
+
+.post__comment p{
+    margin-left: 10px;
+}
+
+.post__comment__image{
+    width: 35px !important;
+    height: 35px !important;
+}

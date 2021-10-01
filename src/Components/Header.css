@@ -1,0 +1,67 @@
+.header{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: whitesmoke;
+    border-bottom: 1px solid lightgrey;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__logo{
+    width: 150px;
+    object-fit: contain;
+}
+
+.header__search{
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+}
+
+.header__search > input{
+    width: 20vw;
+    border: none;
+    padding: 5px;
+}
+.header__search > input:focus{
+    outline-width: 0;
+}
+.header__icons{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+.header__icons Button{
+    background-color: orangered !important;
+    color: white !important;
+    margin-left: 60px !important;
+}
+.header__icons__icon{
+    cursor: pointer;
+    object-fit: contain;
+}
+.add__icon{
+    color: orangered;
+    margin-left: 60px !important;
+    cursor: pointer;
+    font-size: 30px !important;
+}
+
+input::-webkit-file-upload-button{
+    background-color: orangered;
+    padding: 10px;
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
