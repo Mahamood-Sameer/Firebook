@@ -31,30 +31,36 @@ function Header() {
     };
 
     const uploadImage = () => {
-        const ImageRef = storage.ref(`images/${image.name}`).put(image)
-        ImageRef.on("state_changed", (snapshot) => {
-            // Progress....
-            const progress_bar = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-            setProgress(progress_bar)
-        },
-            (error) => {
-                alert(error.message)
+        if (image) {
+            const ImageRef = storage.ref(`images/${image.name}`).put(image)
+            ImageRef.on("state_changed", (snapshot) => {
+                // Progress....
+                const progress_bar = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                setProgress(progress_bar)
             },
-            () => {
-                storage.ref("images").child(image.name).getDownloadURL().then(url => {
-                    db.collection('Posts').add({
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                        postUrl: url,
-                        username: user?.displayName,
-                        profileUrl: user?.photoURL,
-                        imagename: image.name,
-                        caption: caption
+                (error) => {
+                    alert(error.message)
+                },
+                () => {
+                    storage.ref("images").child(image.name).getDownloadURL().then(url => {
+                        db.collection('Posts').add({
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                            postUrl: url,
+                            username: user?.displayName,
+                            profileUrl: user?.photoURL,
+                            imagename: image.name,
+                            caption: caption
+                        })
                     })
-                })
-                setCaption('')
-            }
-        )
-        setOpen(false);
+                    setCaption('')
+                }
+            )
+            setOpen(false);
+        }
+        else{
+            console.error("No Image is Uploaded");
+        }
+
     }
 
     // Creating the User 
