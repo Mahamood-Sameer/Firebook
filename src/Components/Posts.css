@@ -75,3 +75,58 @@
     width: 35px !important;
     height: 35px !important;
 }
+
+
+@media (max-width:950px) and (min-width:600px) {
+    .posts__image,.posts__footer{
+        width: 500px;
+    }
+}
+
+@media (max-width:599px) {
+    .posts__image,.posts__footer{
+        width: 330px;
+    }
+    .header{
+        padding: 5px;
+    }
+    .header__logo{
+        width: 100px;
+        object-fit: contain;
+    }
+    .header__search > input{
+        display: none;
+    }
+    .header__search{
+        border: none !important;
+    }
+    .header__search__icon{
+        display: none !important;
+    }
+    .header__icons Button{
+        font-size: 10px !important;
+        margin-left: 20px !important;
+    }
+    .header__icons{
+        padding: 5px;
+    }
+    .add__icon{
+        font-size: 20px !important;
+        margin-left: 20px !important;
+    }
+    .header__icons__icon{
+        margin-left: 30px !important;
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .posts__header__visible__logo{
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .post__info{
+        font-size: 10px !important;
+    }
+    .posts__header{
+        padding: 5px;
+    }
+}

@@ -49,6 +49,7 @@ function Posts({ info, user }) {
 
 
     const delete_post = () => {
+        setOpen(false);
         db.collection("Posts").doc(info?.id).delete()
         const desertRef = ref(storage, `images/${info?.imagename}`);
         // Delete the file
@@ -62,7 +63,7 @@ function Posts({ info, user }) {
         db.collection("Posts").doc(info.id).collection("Comments").onSnapshot(snapShot => (
             setComments(snapShot.docs.map(doc => (doc.data())))
         ))
-    }, [info,comments])
+    }, [info, comments])
 
 
     return (
@@ -70,7 +71,7 @@ function Posts({ info, user }) {
         <div className="posts">
             <div className="posts__header">
                 <div className="posts__header__visible">
-                    <Avatar variant="rounded" alt="Sameer" src={info?.profileUrl} />
+                    <Avatar variant="rounded" alt="Sameer" src={info?.profileUrl} className="posts__header__visible__logo"/>
                     <div className="post__info">
                         <strong>{info?.username}</strong>
                         <p>{new Date(info?.timestamp?.toDate()).toUTCString()}</p>

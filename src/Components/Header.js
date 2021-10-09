@@ -32,7 +32,7 @@ function Header() {
 
     const uploadImage = () => {
         if (image) {
-            const ImageRef = storage.ref(`images/${image.name}`).put(image)
+            const ImageRef = storage.ref(`images/${user?.email}_${image.name}`).put(image)
             ImageRef.on("state_changed", (snapshot) => {
                 // Progress....
                 const progress_bar = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
@@ -42,13 +42,13 @@ function Header() {
                     alert(error.message)
                 },
                 () => {
-                    storage.ref("images").child(image.name).getDownloadURL().then(url => {
+                    storage.ref("images").child(`${user?.email}_${image.name}`).getDownloadURL().then(url => {
                         db.collection('Posts').add({
                             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                             postUrl: url,
                             username: user?.displayName,
                             profileUrl: user?.photoURL,
-                            imagename: image.name,
+                            imagename: `${user?.email}_${image.name}`,
                             caption: caption
                         })
                     })
@@ -91,16 +91,16 @@ function Header() {
             <img src={logo} alt="logo" className="header__logo"></img>
             <div className="header__search">
                 <input type="search" placeholder="Search" />
-                <SearchIcon />
+                <SearchIcon className="header__search__icon"/>
             </div>
             <div className="header__icons">
                 {user ?
                     <>
                         <Avatar variant="rounded" alt={user?.displayName} src={user?.photoURL} className="header__icons__icon" />
                         <AddCircleOutlinedIcon className="add__icon" onClick={() => { handleClickOpen() }} />
-                        <Button onClick={() => { auth.signOut() }}>Logout</Button>
+                        <Button onClick={() => { auth.signOut() }} className="header__icons__buttons">Logout</Button>
                     </>
-                    : <Button onClick={() => { createUser() }}>Sign In With Google</Button>}
+                    : <Button onClick={() => { createUser() }} className="header__icons__buttons">Sign In With Google</Button>}
             </div>
 
             {/* Dialouge box */}
