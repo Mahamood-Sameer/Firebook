@@ -19,12 +19,16 @@
     border: 1px solid lightgray;
     display: flex;
     align-items: center;
+    border-radius: 10px;
 }
 
 .header__search > input{
-    width: 20vw;
+    width: 30vw;
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 10px;
     border: none;
-    padding: 5px;
+    border: none;
 }
 .header__search > input:focus{
     outline-width: 0;

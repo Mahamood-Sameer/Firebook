@@ -16,6 +16,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import ShareSharpIcon from '@mui/icons-material/ShareSharp';
+import TurnedInNotSharpIcon from '@mui/icons-material/TurnedInNotSharp';
 
 
 
@@ -71,7 +74,7 @@ function Posts({ info, user }) {
         <div className="posts">
             <div className="posts__header">
                 <div className="posts__header__visible">
-                    <Avatar variant="rounded" alt="Sameer" src={info?.profileUrl} className="posts__header__visible__logo"/>
+                    <Avatar variant="rounded" alt="Sameer" src={info?.profileUrl} className="posts__header__visible__logo" />
                     <div className="post__info">
                         <strong>{info?.username}</strong>
                         <p>{new Date(info?.timestamp?.toDate()).toUTCString()}</p>
@@ -86,6 +89,16 @@ function Posts({ info, user }) {
             </div>
             <img src={info?.postUrl} alt="post" className="posts__image" />
             <div className="posts__footer">
+                <div className="posts__icons">
+                    <div className="posts__icons__left">
+                        <LocalFireDepartmentIcon className="post__footer__icon"/>
+                        <ShareSharpIcon className="post__footer__icon"/>
+                    </div>
+                    <div className="posts__icons__right">
+                        <TurnedInNotSharpIcon className="post__footer__icon"/>
+                    </div>
+
+                </div>
                 <form onSubmit={(e) => { Add__comment(e) }}>
                     <input type="text" placeholder="Add a comment" value={comment_text} onChange={(e) => { setCommentText(e.target.value) }} />
                     <button type="submit" onClick={(e) => { Add__comment(e) }}><SendIcon /></button>
