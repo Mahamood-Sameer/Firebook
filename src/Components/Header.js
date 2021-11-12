@@ -115,6 +115,7 @@ function Header() {
                     <input
                         id="actual-btn"
                         type="file"
+                        accept=".png, .apng, .avif, .gif, .jpg, .jpeg, .jfif, .pjpeg, .pjp, .svg, .webp, .bmp, .ico, .cur, .tif, .tiff"
                         onChange={(e) => {
                             if (e.target.files[0]) {
                                 setImage(e.target.files[0])
